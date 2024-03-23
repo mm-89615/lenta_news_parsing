@@ -21,10 +21,10 @@ categories = {
 }
 
 
-def get_news():
-    news_date = input("За какой день хотите получить новости? (YYYY MM DD): ")
-    rubric = input("Введите категорию: ")
-    year, month, day = news_date.split()
+def get_news(date, rubric):
+    # news_date = input("За какой день хотите получить новости? (YYYY MM DD): ")
+    # rubric = input("Введите категорию: ")
+    year, month, day = date.split('-')
     date_for_url = f"{year}/{month}/{day}"  # 2024/03/19
     date_for_json = f"{year}-{month}-{day}"  # 2024-03-19
     page_number = 1

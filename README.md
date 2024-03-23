@@ -1,1 +1,1 @@
-# lenta_news_parsing
+# Телеграм бот по парсингу сайта новостей [LENTA.ru](https://lenta.ru/)
