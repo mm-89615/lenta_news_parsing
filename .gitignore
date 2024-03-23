@@ -1,4 +1,4 @@
 /.venv/
 /.idea/
-/filtered_news.json
-news_db.db
+/news_archive
+token.env
