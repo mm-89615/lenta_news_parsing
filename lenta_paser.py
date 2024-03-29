@@ -1,6 +1,7 @@
 from bs4 import BeautifulSoup as bs
 import requests
 import json
+import os
 
 categories = {
     "Все рубрики": None,
@@ -24,10 +25,11 @@ categories = {
 def get_news(date, rubric):
     year, month, day = date.split("-")
     date_for_url = f"{year}/{month}/{day}"  # 2024/03/19
-    # date_for_json = f"{year}-{month}-{day}"  # 2024-03-19
     page_number = 1
     filtered_news = []
 
+    if os.path.exists('received_news.json'):
+        os.remove('received_news.json')
     while True:
         if not categories[rubric]:
             url = f"https://lenta.ru/{date_for_url}/page/{page_number}/"
@@ -39,7 +41,6 @@ def get_news(date, rubric):
         page_number += 1
         if len(all_news) == 0:
             break
-
         for data in all_news:
             title_news = data.find("h3", class_="card-full-news__title")
             publication_time = data.find(
@@ -60,6 +61,5 @@ def get_news(date, rubric):
             }
 
             filtered_news.append(news)
-
         with open(f"received_news.json", "w", encoding="UTF-8") as file:
             json.dump(filtered_news, file, indent=4, ensure_ascii=False)
