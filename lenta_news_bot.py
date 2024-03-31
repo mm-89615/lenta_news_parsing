@@ -254,6 +254,9 @@ def return_news(message):
                          '<b>Новостей этой категории нет.</b>',
                          parse_mode='HTML')
         category_message(message)
+    finally:
+        if os.path.exists(f'received_news/{message.from_user.id}.json'):
+            os.remove(f'received_news/{message.from_user.id}.json')
 
 
 def main():
